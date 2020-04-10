@@ -24,7 +24,7 @@
 
       </el-header>
       <el-main height="">
-        <h1 v-show="handleShow">欢迎进入管理后台</h1>
+        <!-- <h1 v-show="handleShow">欢迎进入管理后台</h1> -->
         <router-view :key="$route.path"></router-view>
       </el-main>
     </el-container>

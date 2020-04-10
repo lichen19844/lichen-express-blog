@@ -1,12 +1,12 @@
 <template>
   <div>
     <h3>文章列表</h3>
-    <el-table :data="items" border stripe>
-      <el-table-column v-for="col in columns"
-        :prop="col.id"
-        :key="col.id"
-        :label="col.label"
-        :width="col.width">
+    <el-table :data="items">
+      <el-table-column v-for="item in items"
+        :prop="item.id"
+        :key="item.id"
+        :label="item.label"
+        :width="item.width">
       </el-table-column>
     </el-table>
     

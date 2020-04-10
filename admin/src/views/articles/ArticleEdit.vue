@@ -45,6 +45,7 @@ export default {
     async save () {
       // console.log('save')
       await this.$http.post('rest/articles',this.model)
+      this.$router.push('/articles/list')
       this.$message.success('成功创建数据')
     },
     async handleImageAdded (file, Editor, cursorLocation, resetUploader) {
