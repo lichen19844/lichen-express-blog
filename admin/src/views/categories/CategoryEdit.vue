@@ -28,7 +28,11 @@ export default {
   },
   methods: {
     async save () {
-      await this.$http.post('rest/categories', this.model)
+      const url = this.id ? `rest/categories/${this.id}` : 'rest/categories';
+      const method = this.id ? 'put' : 'post';
+      await this.$http[method](url, this.model)
+      this.model = {}
+      // this.$router.go(-1)
       this.$router.push('/categories/list')
       this.$message.success('保存成功')
     },

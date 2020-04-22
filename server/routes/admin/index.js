@@ -30,6 +30,19 @@ module.exports = app => {
     res.send(model)
   })
 
+  router.put('/categories/:id', async (req, res) => {
+    const model = await Category.findByIdAndUpdate(req.params.id, req.body)
+    res.send(model)
+  })
+
+  router.delete('/categories/:id', async (req, res) => {
+    // req.params.id能拿到/categories/:id接到的id值
+    await Category.findByIdAndDelete(req.params.id, req.body)
+    res.send({
+      success: true
+    })
+  })
+
   app.use(
     '/admin/api/rest',
     router
