@@ -6,7 +6,7 @@
         :prop="item.id"
         :key="item.id"
         :label="item.label"
-        :width="item.width">
+        :min-width="item.width">
       </el-table-column>
     </el-table>
     

@@ -20,13 +20,13 @@ Vue.use(VueRouter)
     children: [
       { path: '/articles/list', component: ArticleList },
       { path: '/articles/create', component: ArticleEdit },
-      { path: '/articles/edit/:id', component: ArticleEdit, prop: true },
+      { path: '/articles/edit/:id', component: ArticleEdit, props: true },
       { path: '/categories/list', component: CategoryList },
       { path: '/categories/create', component: CategoryEdit },
-      { path: '/categories/edit/:id', component: CategoryEdit, prop: true },
+      { path: '/categories/edit/:id', component: CategoryEdit, props: true },
       { path: '/adminUsers/list', component: AdminUserList },
       { path: '/adminUsers/create', component: AdminUserEdit },
-      { path: '/adminUsers/edit/:id', component: AdminUserEdit, prop: true }
+      { path: '/adminUsers/edit/:id', component: AdminUserEdit, props: true }
     ]
   }
 ]

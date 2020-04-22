@@ -25,6 +25,11 @@ module.exports = app => {
     res.send(items)
   })
 
+  router.get('/categories/:id', async (req, res) => {
+    const model = await Category.findById(req.params.id)
+    res.send(model)
+  })
+
   app.use(
     '/admin/api/rest',
     router
