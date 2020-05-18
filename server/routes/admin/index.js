@@ -14,6 +14,28 @@ module.exports = app => {
     res.send(model)
   })
 
+  router.get('/articles', async (req, res) => {
+    const items = await Article.find().limit(100)
+    res.send(items)
+  })
+
+  router.get('/articles/:id', async (req, res) => {
+    const model = await Article.findById(req.params.id)
+    res.send(model)
+  })
+
+  router.put('/articles/:id', async (req, res) => {
+    const model = await Article.findByIdAndUpdate(req.params.id, req.body)
+    res.send(model)
+  })
+
+  router.delete('/articles/:id', async (req, res) => {
+    await Article.findByIdAndDelete(req.params.id, req.body)
+    res.send({
+      success: true
+    })
+  })
+
   router.post('/categories', async (req, res) => {
     const model = await Category.create(req.body)
     console.log('post categories', model)
@@ -45,6 +67,7 @@ module.exports = app => {
 
   app.use(
     '/admin/api/rest',
+    // '/admin/api/rest/:resource',
     router
   )
 }

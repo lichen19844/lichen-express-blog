@@ -12,7 +12,7 @@
         ></vue-editor> -->
       </el-form-item>
       <el-form-item>
-        <el-button  type="primary" native-type="submit" round>立即创建</el-button>
+        <el-button  type="primary" native-type="submit" round>立即{{id ? '编辑': '创建'}}</el-button>
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
@@ -26,7 +26,7 @@ export default {
   // components: {
   //   VueEditor
   // },
-  prop: {
+  props: {
     id: {}
   },
   data () {
@@ -43,10 +43,13 @@ export default {
       this.model = res.data
     },
     async save () {
-      // console.log('save')
-      await this.$http.post('rest/articles',this.model)
+      const url = this.id ? `rest/articles/${this.id}` : 'rest/articles';
+      const method = this.id ? 'put' : 'post';
+      await this.$http[method](url, this.model)
+      this.model = {}
+      // this.$router.go(-1)
       this.$router.push('/articles/list')
-      this.$message.success('成功创建数据')
+      this.$message.success('保存成功')
     },
     async handleImageAdded (file, Editor, cursorLocation, resetUploader) {
       const formData = new FormData();
@@ -69,6 +72,9 @@ export default {
       //     console.log(err);
       //   });
     }
+  },
+  created () {
+    this.id && this.fetch()
   }
 }
 </script>
