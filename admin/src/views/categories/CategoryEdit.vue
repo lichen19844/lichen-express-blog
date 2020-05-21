@@ -2,6 +2,22 @@
   <div>
     <h1>{{ id ? "编辑" : "新建" }}分类</h1>
     <el-form label-width="80px" @submit.native.prevent="save">
+      <el-form-item label="上级分类">
+        <el-select
+          placeholder="请选择"
+          v-model="model.parent"
+          style="width: 100%"
+        >
+          <el-option
+            v-for="item of parents"
+            :key="item._id"
+            :label="item.name"
+            :value="item._id"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+
       <el-form-item label="分类标题">
         <el-input placeholder="请输入内容" v-model="model.name"></el-input>
       </el-form-item>
@@ -9,7 +25,7 @@
         <el-button type="primary" native-type="submit" round
           >立即{{ id ? "编辑" : "新建" }}</el-button
         >
-        <el-button>取消</el-button>
+        <el-button @click="$router.go(-1)">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -24,7 +40,9 @@ export default {
     return {
       model: {
         name: "",
+        // parent: ''
       },
+      parents: []
     };
   },
   methods: {
@@ -44,7 +62,12 @@ export default {
     },
     async fetchParents() {
       const res = await this.$http.get(`rest/categories`);
-      this.parents = res.data;
+      // this.parents = res.data;
+      for (let i = 0; i < res.data.length; i++) {
+        if (!res.data[i].parent) {
+        this.parents.push(res.data[i])
+      }
+      }
       console.log("this.parents is ", this.parents);
     },
   },

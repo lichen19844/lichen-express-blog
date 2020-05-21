@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const AritcleSchema = new mongoose.Schema({
-  title: {type: String},
-  body: {type: String}
-},{
+  title: { type: String },
+  body: { type: String }
+}, {
   timestamps: true
 })
 

@@ -13,7 +13,7 @@
       </el-form-item>
       <el-form-item>
         <el-button  type="primary" native-type="submit" round>立即{{id ? '编辑': '创建'}}</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="$router.go(-1)">取消</el-button>
       </el-form-item>
     </el-form>
     

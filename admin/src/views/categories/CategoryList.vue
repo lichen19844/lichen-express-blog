@@ -10,9 +10,9 @@
         min-width="230px"
       >
       </el-table-column>
-      <!-- <el-table-column prop="_id" label="ID" width="230px"></el-table-column>
-      <el-table-column prop="name" label="分类名称"></el-table-column> -->
-      <el-table-column fixed="right" label="操作" min-width="180px">
+      <el-table-column prop="parent.name" label="上级分类" min-width="200px">
+      </el-table-column>
+      <el-table-column fixed="right" label="操作" min-width="100px">
         <template v-slot="{ row }">
           <el-button
             type="text"
@@ -34,6 +34,7 @@ export default {
       fields: {
         _id: { label: "ID" },
         name: { label: "分类名称" },
+        // parent: {label: "上级分类"}
       },
     };
   },
