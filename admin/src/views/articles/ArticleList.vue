@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>文章列表</h1>
-    <el-table :data="items" border stripe :row-style="tableRowStyle">
+    <el-table :data="items" border stripe>
       <el-table-column
         v-for="(field, title) in fields"
         :prop="title"
@@ -39,13 +39,12 @@ export default {
         _id: { label: "ID" },
         title: { label: "文章标题" },
       },
+      categories: []
     };
   },
   methods: {
-    async tableRowStyle() {
-      return "background-color:pink;font-size:15px;";
-    },
     async fetch() {
+      // await this.$http.get(`rest/categories`)
       const res = await this.$http.get("rest/articles");
       this.items = res.data;
       // 针对分类做细化：
@@ -59,7 +58,6 @@ export default {
         }
         return item;
       });
-
       console.log("articles list is ", this.items);
     },
     async remove(row) {

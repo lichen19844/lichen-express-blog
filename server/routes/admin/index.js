@@ -1,4 +1,5 @@
 module.exports = app => {
+  console.log('admin')
   const express = require('express')
   // express的子路由，用于增删改查
   const router = express.Router({
@@ -12,7 +13,7 @@ module.exports = app => {
   })
 
   router.get('/', async (req, res) => {
-    console.log('req.app is true ? ', req.app === res.app === app)
+    // console.log('req.app is true ? ', req.app === res.app === app)
     let queryOptions = {}
     if (req.Model.modelName === 'Category') {
       queryOptions.populate = 'parent'
