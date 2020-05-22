@@ -10,8 +10,10 @@
         min-width="230px"
       >
       </el-table-column>
+      
       <el-table-column prop="parent.name" label="上级分类" min-width="200px">
       </el-table-column>
+
       <el-table-column fixed="right" label="操作" min-width="100px">
         <template v-slot="{ row }">
           <el-button

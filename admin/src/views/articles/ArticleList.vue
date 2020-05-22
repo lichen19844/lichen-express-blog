@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>文章列表</h1>
-    <el-table :data="items" border stripe>
+    <el-table :data="items" border stripe :row-style="tableRowStyle">
       <el-table-column
         v-for="(field, title) in fields"
         :prop="title"
@@ -10,6 +10,10 @@
         min-width="230px"
       >
       </el-table-column>
+
+      <el-table-column prop="catArray" label="文章分类" min-width="200px">
+      </el-table-column>
+
       <!-- <el-table-column prop="_id" label="ID" width="230px"></el-table-column>
       <el-table-column prop="name" label="分类名称"></el-table-column> -->
       <el-table-column fixed="right" label="操作" min-width="180px">
@@ -38,10 +42,25 @@ export default {
     };
   },
   methods: {
+    async tableRowStyle() {
+      return "background-color:pink;font-size:15px;";
+    },
     async fetch() {
       const res = await this.$http.get("rest/articles");
       this.items = res.data;
-      console.log('articles list is ', res.data)
+      // 针对分类做细化：
+      this.items.map((item) => {
+        if (item.categories) {
+          let catArray = [];
+          item.categories.map((cat) => {
+            catArray.push(cat.name);
+          });
+          item.catArray = catArray.join(", ");
+        }
+        return item;
+      });
+
+      console.log("articles list is ", this.items);
     },
     async remove(row) {
       try {

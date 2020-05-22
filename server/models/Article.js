@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 const AritcleSchema = new mongoose.Schema({
   title: { type: String },
-  body: { type: String }
+  body: { type: String },
+  categories: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Category' }]
 }, {
   timestamps: true
 })

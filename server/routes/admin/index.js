@@ -13,12 +13,15 @@ module.exports = app => {
 
   router.get('/', async (req, res) => {
     console.log('req.app is true ? ', req.app === res.app === app)
-    const queryOptions = {}
+    let queryOptions = {}
     if (req.Model.modelName === 'Category') {
       queryOptions.populate = 'parent'
     }
+    if (req.Model.modelName === 'Article') {
+      queryOptions.populate = 'categories'
+    }
     // const items = await req.Model.find().populate('parent').limit(100)
-    const items = await req.Model.find().setOptions(queryOptions).limit(100)
+    const items = await req.Model.find().setOptions(queryOptions).limit(200).lean()
     res.send(items)
   })
 
