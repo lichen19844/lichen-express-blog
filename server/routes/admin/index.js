@@ -5,6 +5,8 @@ module.exports = app => {
   const router = express.Router({
     mergeParams: true
   })
+  const multer = require('multer')
+  const upload = multer({dest: __dirname + '/../../uploads'})
 
   router.post('/', async (req, res) => {
     const model = await req.Model.create(req.body)
@@ -54,4 +56,11 @@ module.exports = app => {
     },
     router
   )
+
+  app.post('/admin/api/upload', upload.single('file'), async (req, res, next) => {
+    const file = req.file
+    file.url = `http://localhost:3000/uploads/${file.filename}`
+    console.log('file is ', file)
+    res.send(file)
+  })
 }
