@@ -23,14 +23,14 @@
         <el-input placeholder="请输入内容" v-model="model.title"></el-input>
       </el-form-item>
       <el-form-item label="文章详情">
-        <el-input
+        <!-- <el-input
           type="textarea"
           placeholder="请输入内容"
           v-model="model.body"
-        ></el-input>
-        <!-- <vue-editor v-model="model.body"
+        ></el-input> -->
+        <vue-editor v-model="model.body"
           useCustomImageHandler @image-added="handleImageAdded"
-        ></vue-editor> -->
+        ></vue-editor>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit" round
@@ -43,11 +43,11 @@
 </template>
 
 <script>
-// import { VueEditor } from "vue2-editor";
+import { VueEditor } from "vue2-editor";
 export default {
-  // components: {
-  //   VueEditor
-  // },
+  components: {
+    VueEditor
+  },
   props: {
     id: {},
   },
