@@ -1,7 +1,13 @@
 <template>
   <div>
     <h1>分类列表</h1>
-    <el-table :data="items" border stripe>
+    <el-table
+      :data="items"
+      border
+      stripe
+      :header-cell-style="rowClass"
+      :cell-style="cellStyle"
+    >
       <el-table-column
         v-for="(field, name) in fields"
         :prop="name"
@@ -10,7 +16,7 @@
         min-width="230px"
       >
       </el-table-column>
-      
+
       <el-table-column prop="parent.name" label="上级分类" min-width="200px">
       </el-table-column>
 
@@ -66,6 +72,12 @@ export default {
         message: "删除成功!",
       });
       this.fetch();
+    },
+    rowClass() {
+      return "background: #cccccc; text-align: center; color: #000000; font-weight: 600;";
+    },
+    cellStyle() {
+      return "background: #ffffff; text-align: center;";
     },
   },
   created() {

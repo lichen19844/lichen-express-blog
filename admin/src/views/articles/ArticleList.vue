@@ -1,7 +1,13 @@
 <template>
   <div>
     <h1>文章列表</h1>
-    <el-table :data="items" border stripe>
+    <el-table
+      :data="items"
+      border
+      stripe
+      :header-cell-style="rowClass"
+      :cell-style="cellStyle"
+    >
       <el-table-column
         v-for="(field, title) in fields"
         :prop="title"
@@ -39,7 +45,7 @@ export default {
         _id: { label: "ID" },
         title: { label: "文章标题" },
       },
-      categories: []
+      categories: [],
     };
   },
   methods: {
@@ -82,11 +88,20 @@ export default {
       });
       this.fetch();
     },
+    rowClass() {
+      return "background: #cccccc; text-align: center; color: #000000; font-weight: 600;";
+    },
+    cellStyle() {
+      return "background: #ffffff; text-align: center;";
+    },
   },
   created() {
     this.fetch();
+    this.headerStyle();
   },
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

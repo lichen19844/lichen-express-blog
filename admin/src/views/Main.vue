@@ -4,7 +4,13 @@
       <el-menu
         mode="vertical" 
         :default-active="$router.path"
-        router>
+        :default-openeds="openeds"
+        :unique-opened="uniqueOpened" 
+        active-text-color="#ffd04b"
+        text-color="#fff"
+        background-color="#545c64"
+        :router=true
+      >
         <el-submenu
           v-for="(item, index) in menu.items"
           :index="`${index} + 1`"
@@ -19,6 +25,7 @@
         </el-submenu>
       </el-menu>
     </el-aside>
+
     <el-container>
       <el-header height="">
 
@@ -35,6 +42,8 @@
 export default {
   data () {
     return {
+      openeds: ['2'],
+      uniqueOpened: true,
       menu: {
         items: [
           {
